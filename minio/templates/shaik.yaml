@@ -43,7 +43,7 @@ spec:
 
           volumeMounts:
             - mountPath: /data
-              name: data
+              name: efs-pvc
           command:
             - /bin/bash
             - -c
@@ -51,9 +51,9 @@ spec:
               - minio server /data --console-address :9090
       restartPolicy: Always
       volumes:
-      - name: katana-db
+      - name: efs-pvc
         persistentVolumeClaim:
-          claimName: katana-db-volume-claim
+          claimName: efs-storage-claim
   selector:
     matchLabels:
       app: minio
