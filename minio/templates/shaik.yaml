@@ -50,6 +50,10 @@ spec:
           args:
               - minio server /data --console-address :9090
       restartPolicy: Always
+      volumes:
+      - name: katana-db
+        persistentVolumeClaim:
+          claimName: katana-db-volume-claim
   selector:
     matchLabels:
       app: minio
